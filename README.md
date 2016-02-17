@@ -30,9 +30,9 @@ A few more thoughts:
 
 * There are less cross OS browser issues (foo feature works on OS X, but not not OS Y), but they still exist and version numbers may not match actual feature functionality.
 
-The proper way to feature detect would be to run a modernizr test on any CSS value of dubious support, and allow those browsers that pass (excluding ones polyfilled or with css workarounds based on the modernizr class).
+The proper way to feature detect would be to run a modernizr test on any CSS value of dubious support, and allow those browsers that pass (excluding ones polyfilled or with css workarounds based on the modernizr class). However we don't want to support the most browsers we can, but ones that we want.
 
-### proposed solution
+### proposed simple solution
 
 An, imperfect, yet simple solution, is to just check for some CSS property that IE8 doesn't support (since Internet Explorer is generally the browser). Perusing caniuse brought up a few candidates, but I like [media queries](http://caniuse.com/#feat=css-mediaqueries) since they're actually something that doesn't gracefully degrade. :) By adding that test to the modernizr build, if a browser is older than IE8 (or for some reason doesn't support media queries) it will get pushed out. [rem](http://caniuse.com/#feat=rem) and [css3 colors](http://caniuse.com/#feat=css3-colors) were the runner up candidates, but the latter isn't critical.
 
@@ -40,10 +40,12 @@ Granted this doesn't solve for older non-IE browsers, but those tend to update o
 
 If a browser passed the other two tests, and failed this one, the `html` element would look like `<html class="js cookies no-media-queries">`.
 
+If this isn't good enough, one could add in a proper UA sniffing test on top of modernizr's js and cookies ones. Before gzipping the custom modernizr file is 2.7Kb, and it fires quickly, so it'd probably still be useful regardless.
+
 ## added bonus
 
 It's easy to style bits of information on a static page people get sent to, as you can show/hide information based on simple CSS applied to specific children of those classes on the `html` element.
 
 ## tl;dr
 
-Have something server side that checks for `no-js`, `no-cookies` or `no-media-queries` on the `html` element and send to an error page if any appear.
+Have something server side that checks for `no-js`, `no-cookies` or `no-media-queries` on the `html` element and send to an error page if any appear. How is would be done is up to someone else. :p
