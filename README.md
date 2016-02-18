@@ -48,6 +48,6 @@ It's easy to style bits of information on a static page people get sent to, as y
 
 ## how it'd work
 
-You can easily run some if/then statements based on whether cookies and media queries function, and then hop somewhere else they don't and silently proceed if they do - https://modernizr.com/docs
+You can easily run some if/then yep/nope statements based on whether cookies and media queries function, and then hop somewhere else they don't and silently proceed if they do - https://modernizr.com/docs
 
-For JS I guess you could override `<meta http-equiv="">` that'd redirect the page otherwise?
+For JS I guess you could just have some JS that would override something like `<meta http-equiv="refresh" content="2" url="foobar">`, so if there isn't any JS the page just loads on. Or hit some intermediate page that just does a test (in case there are large load times).
