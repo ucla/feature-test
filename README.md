@@ -46,6 +46,8 @@ If this isn't good enough, one could add in a proper UA sniffing test on top of 
 
 It's easy to style bits of information on a static page people get sent to, as you can show/hide information based on simple CSS applied to specific children of those classes on the `html` element.
 
-## tl;dr
+## how it'd work
 
-Have something server side that checks for `no-js`, `no-cookies` or `no-media-queries` on the `html` element and send to an error page if any appear. How is would be done is up to someone else. :p
+You can easily run some if/then statements based on whether cookies and media queries function, and then hop somewhere else they don't and silently proceed if they do - https://modernizr.com/docs
+
+For JS I guess you could override `<meta http-equiv="">` that'd redirect the page otherwise?
